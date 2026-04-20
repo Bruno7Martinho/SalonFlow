@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - BarberFlow</title>
+    <title>Login - SalonFlow</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
@@ -15,7 +15,7 @@
         }
 
         body {
-            background: linear-gradient(135deg, #000 0%, #333 100%);
+            background: linear-gradient(135deg, #005a8c 0%, #0088cc 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -29,7 +29,7 @@
             padding: 40px;
             width: 100%;
             max-width: 450px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0, 90, 140, 0.3);
             animation: fadeIn 0.5s ease;
         }
 
@@ -57,7 +57,7 @@
 
         .login-box h3 {
             text-align: center;
-            color: #666;
+            color: #2c6e9e;
             margin-bottom: 30px;
             font-weight: normal;
             font-size: 1rem;
@@ -70,14 +70,14 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: #333;
+            color: #2c3e50;
             font-weight: 600;
         }
 
         .form-control {
             width: 100%;
             padding: 12px 15px;
-            border: 2px solid #e0e0e0;
+            border: 2px solid #cce7f0;
             border-radius: 10px;
             font-size: 1rem;
             transition: all 0.3s;
@@ -85,13 +85,13 @@
 
         .form-control:focus {
             outline: none;
-            border-color: #000;
+            border-color: #005a8c;
         }
 
         .btn {
             width: 100%;
             padding: 12px;
-            background: #000;
+            background: #005a8c;
             color: white;
             border: none;
             border-radius: 10px;
@@ -102,7 +102,7 @@
         }
 
         .btn:hover {
-            background: #333;
+            background: #0088cc;
             transform: translateY(-2px);
         }
 
@@ -134,11 +134,11 @@
             text-align: center;
             margin-top: 20px;
             font-size: 0.85rem;
-            color: #999;
+            color: #2c6e9e;
         }
 
         .info-text i {
-            color: #000;
+            color: #005a8c;
         }
 
         .security-badge {
@@ -149,7 +149,7 @@
         }
 
         .demo-credentials {
-            background: #f8f9fa;
+            background: #f0f7fa;
             padding: 12px;
             border-radius: 8px;
             margin-top: 20px;
@@ -159,20 +159,20 @@
 
         .demo-credentials p {
             margin: 5px 0;
-            color: #666;
+            color: #2c6e9e;
         }
 
         .demo-credentials strong {
-            color: #000;
+            color: #005a8c;
         }
     </style>
 </head>
 <body>
     <div class="login-box">
         <div class="logo-container">
-            <img src="img/logo.png" alt="BarberFlow" class="logo-img" onerror="this.src='https://via.placeholder.com/180x60?text=BarberFlow'">
+            <img src="img/logo.png" alt="SalonFlow" class="logo-img" onerror="this.src='https://via.placeholder.com/180x60?text=SalonFlow'">
         </div>
-        <h3>Sistema de Gerenciamento de Barbearias</h3>
+        <h3>Sistema de Gerenciamento de Salões de Beleza</h3>
         
         <form id="loginForm">
             <div class="form-group">
@@ -260,26 +260,26 @@
                         return { success: true, role: 'admin', redirectTo: 'admin.html' };
                     }
                     
-                    // Buscar se é barbeiro
-                    const { data: barbeiroData, error: barbeiroError } = await supabaseClient
+                    // Buscar se é profissional
+                    const { data: profissionalData, error: profissionalError } = await supabaseClient
                         .from('barbeiros')
                         .select('*, barbearias(id, nome)')
                         .eq('email', email)
                         .maybeSingle();
                     
-                    console.log('Barbeiro data:', barbeiroData);
+                    console.log('Profissional data:', profissionalData);
                     
-                    if (barbeiroData) {
+                    if (profissionalData) {
                         const userSession = {
-                            id: barbeiroData.id,
-                            nome: barbeiroData.nome,
-                            email: barbeiroData.email,
-                            barbearia_id: barbeiroData.barbearia_id,
-                            role: 'barbeiro',
-                            barbearia_nome: barbeiroData.barbearias?.nome
+                            id: profissionalData.id,
+                            nome: profissionalData.nome,
+                            email: profissionalData.email,
+                            barbearia_id: profissionalData.barbearia_id,
+                            role: 'profissional',
+                            barbearia_nome: profissionalData.barbearias?.nome
                         };
                         sessionStorage.setItem('barberflow_user', JSON.stringify(userSession));
-                        return { success: true, role: 'barbeiro', redirectTo: 'index.html' };
+                        return { success: true, role: 'profissional', redirectTo: 'index.html' };
                     }
                     
                     return { success: false, error: 'Usuário não autorizado - não encontrado nas tabelas' };

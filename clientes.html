@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clientes - BarberFlow</title>
+    <title>Clientes - SalonFlow</title>
     <link rel="stylesheet" href="estilo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <style>
+  <style>
         .modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 77, 115, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -32,7 +32,7 @@
             max-width: 500px;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 90, 140, 0.3);
             animation: modalFadeIn 0.3s ease;
         }
 
@@ -48,7 +48,7 @@
         }
 
         .modal-header {
-            background: #000;
+            background: #005a8c;
             color: white;
             padding: 20px;
             display: flex;
@@ -89,27 +89,27 @@
 
         .modal-footer {
             padding: 15px 20px;
-            background: #f8f9fa;
+            background: #f0f7fa;
             display: flex;
             justify-content: flex-end;
             gap: 10px;
-            border-top: 1px solid #dee2e6;
+            border-top: 1px solid #cce7f0;
         }
 
         .detail-row {
             margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #cce7f0;
         }
 
         .detail-row strong {
             display: inline-block;
             min-width: 120px;
-            color: #555;
+            color: #2c6e9e;
         }
 
         .detail-row span {
-            color: #333;
+            color: #2c3e50;
         }
 
         .btn {
@@ -122,12 +122,13 @@
         }
 
         .btn-primary {
-            background: #000;
+            background: #005a8c;
             color: white;
         }
 
         .btn-primary:hover {
-            background: #333;
+            background: #0088cc;
+            transform: translateY(-2px);
         }
 
         .btn-secondary {
@@ -162,7 +163,7 @@
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 90, 140, 0.1);
         }
 
         .form-group {
@@ -173,14 +174,21 @@
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
+            color: #2c3e50;
         }
 
         .form-control {
             width: 100%;
             padding: 8px 12px;
-            border: 1px solid #dee2e6;
+            border: 1px solid #cce7f0;
             border-radius: 4px;
             font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #005a8c;
         }
 
         .table-container {
@@ -194,23 +202,23 @@
             background: white;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 90, 140, 0.1);
         }
 
         th, td {
             padding: 12px;
             text-align: left;
-            border-bottom: 1px solid #dee2e6;
+            border-bottom: 1px solid #cce7f0;
         }
 
         th {
-            background: #f8f9fa;
+            background: #f0f7fa;
             font-weight: bold;
-            color: #333;
+            color: #005a8c;
         }
 
         tr:hover {
-            background: #f8f9fa;
+            background: #f0f7fa;
         }
 
         .action-buttons {
@@ -271,9 +279,9 @@
             color: #721c24;
         }
 
-        .barbershop-badge {
-            background: #3498db;
-            color: white;
+        .salon-badge {
+            background: #a8d8f0;
+            color: #005a8c;
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
@@ -291,11 +299,17 @@
         }
 
         .stat-card {
-            background: linear-gradient(135deg, #000 0%, #333 100%);
+            background: linear-gradient(135deg, #005a8c 0%, #0088cc 100%);
             color: white;
             padding: 15px;
             border-radius: 10px;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 90, 140, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
         }
 
         .stat-card h4 {
@@ -305,7 +319,7 @@
 
         .menu-toggle {
             display: none;
-            background: #333;
+            background: #0077b3;
             border: none;
             color: white;
             font-size: 1.5rem;
@@ -319,7 +333,7 @@
         }
 
         .menu-toggle:hover {
-            background: #555;
+            background: #0088cc;
         }
 
         .navbar {
@@ -328,10 +342,10 @@
             left: -100%;
             width: 300px;
             height: 100vh;
-            background: #111;
+            background: #004d73;
             z-index: 1000;
             transition: left 0.3s ease;
-            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 2px 0 15px rgba(0, 77, 115, 0.3);
             overflow-y: auto;
             display: block;
         }
@@ -341,10 +355,10 @@
         }
 
         .mobile-user-info {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background: linear-gradient(135deg, #004d73 0%, #005a8c 100%);
             padding: 25px 20px;
             margin-bottom: 20px;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #0077b3;
             display: flex;
             align-items: center;
             gap: 15px;
@@ -354,7 +368,7 @@
         .mobile-user-avatar {
             width: 50px;
             height: 50px;
-            background: #333;
+            background: #0077b3;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -381,14 +395,14 @@
             margin-bottom: 5px;
         }
 
-        .mobile-barbershop-name {
+        .mobile-salon-name {
             font-size: 0.8rem;
-            color: #aaa;
+            color: #a8d8f0;
         }
 
-        .mobile-barbershop-name i {
+        .mobile-salon-name i {
             margin-right: 5px;
-            color: #3498db;
+            color: #a8d8f0;
         }
 
         .mobile-logout-btn {
@@ -417,7 +431,7 @@
         }
 
         .navbar li {
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid #005a8c;
         }
 
         .navbar a {
@@ -425,7 +439,7 @@
             align-items: center;
             gap: 12px;
             padding: 15px 20px;
-            color: #ddd;
+            color: #cce7f0;
             text-decoration: none;
             transition: all 0.3s;
             font-size: 1rem;
@@ -433,9 +447,9 @@
 
         .navbar a:hover,
         .navbar a.active {
-            background: #222;
+            background: #005a8c;
             color: white;
-            border-left: 4px solid white;
+            border-left: 4px solid #a8d8f0;
             padding-left: 16px;
         }
 
@@ -450,7 +464,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 77, 115, 0.5);
             z-index: 999;
             display: none;
         }
@@ -483,7 +497,7 @@
                 position: static;
                 width: auto;
                 height: auto;
-                background: #111;
+                background: #004d73;
                 box-shadow: none;
                 overflow: visible;
             }
@@ -508,8 +522,9 @@
             .navbar a:hover,
             .navbar a.active {
                 border-left: none;
-                border-bottom: 3px solid white;
+                border-bottom: 3px solid #a8d8f0;
                 padding-left: 20px;
+                background: transparent;
             }
             
             .mobile-user-info {
@@ -528,8 +543,8 @@
         <header class="header">
             <div class="logo-container">
                 <div class="logo">
-                    <i class="fas fa-cut"></i>
-                    <h1>BarberFlow <span id="barbershopBadge" class="barbershop-badge" style="display: none;"><i class="fas fa-store"></i> </span></span></h1>
+                    <i class="fas fa-spa"></i>
+                    <h1>SalonFlow <span id="salonBadge" class="salon-badge" style="display: none;"><i class="fas fa-store"></i> </span></h1>
                 </div>
 
                 <button class="menu-toggle" id="menuToggle">
@@ -551,7 +566,7 @@
                     </div>
                     <div class="mobile-user-details">
                         <span id="mobileUserName">Carregando...</span>
-                        <span id="mobileBarbershopName" class="mobile-barbershop-name"></span>
+                        <span id="mobileSalonName" class="mobile-salon-name"></span>
                     </div>
                     <button onclick="logout()" class="mobile-logout-btn">
                         <i class="fas fa-sign-out-alt"></i> Sair
@@ -609,7 +624,7 @@
                     <form id="clientForm">
                         <div class="form-group">
                             <label for="clientName">Nome Completo *</label>
-                            <input type="text" id="clientName" class="form-control" placeholder="Ex: João Silva" required>
+                            <input type="text" id="clientName" class="form-control" placeholder="Ex: Maria Silva" required>
                         </div>
 
                         <div class="form-group">
@@ -667,49 +682,49 @@
                             </tr>
                         </thead>
                         <tbody id="clientsTableBody">
-                            <tr><td colspan="8" style="text-align: center;">Carregando clientes...<\/td><\/tr>
-                        <\/tbody>
-                    <\/table>
-                <\/div>
-            <\/div>
-        <\/main>
+                            <tr><td colspan="8" style="text-align: center;">Carregando clientes...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
 
         <footer class="footer">
-            <p>BarberFlow &copy; <span id="currentYear"><\/span> - Sistema de Gerenciamento<\/p>
-        <\/footer>
-    <\/div>
+            <p>SalonFlow &copy; <span id="currentYear"></span> - Sistema de Gerenciamento de Salão</p>
+        </footer>
+    </div>
 
     <div id="clientModal" class="modal hidden">
         <div class="modal-content">
             <div class="modal-header">
-                <h3><i class="fas fa-user"><\/i> Detalhes do Cliente<\/h3>
-                <button class="modal-close" onclick="closeModal()">&times;<\/button>
-            <\/div>
+                <h3><i class="fas fa-user"></i> Detalhes do Cliente</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
             <div class="modal-body" id="modalBody">
-                <div class="detail-row"><strong>Nome:<\/strong> <span id="modalClientName">Carregando...<\/span><\/div>
-                <div class="detail-row"><strong>Telefone:<\/strong> <span id="modalClientPhone">Carregando...<\/span><\/div>
-                <div class="detail-row"><strong>E-mail:<\/strong> <span id="modalClientEmail">Carregando...<\/span><\/div>
-                <div class="detail-row"><strong>CPF:<\/strong> <span id="modalClientCpf">Carregando...<\/span><\/div>
-                <div class="detail-row"><strong>Data Nascimento:<\/strong> <span id="modalClientBirthdate">Carregando...<\/span><\/div>
-                <div class="detail-row"><strong>Total Gasto:<\/strong> <span id="modalClientTotalGasto">Carregando...<\/span><\/div>
-                <div class="detail-row"><strong>Última Visita:<\/strong> <span id="modalClientLastVisit">Carregando...<\/span><\/div>
-                <div class="detail-row"><strong>Status:<\/strong> <span id="modalClientStatus">Carregando...<\/span><\/div>
-                <div class="detail-row"><strong>Observações:<\/strong> <span id="modalClientNotes">Nenhuma<\/span><\/div>
-            <\/div>
+                <div class="detail-row"><strong>Nome:</strong> <span id="modalClientName">Carregando...</span></div>
+                <div class="detail-row"><strong>Telefone:</strong> <span id="modalClientPhone">Carregando...</span></div>
+                <div class="detail-row"><strong>E-mail:</strong> <span id="modalClientEmail">Carregando...</span></div>
+                <div class="detail-row"><strong>CPF:</strong> <span id="modalClientCpf">Carregando...</span></div>
+                <div class="detail-row"><strong>Data Nascimento:</strong> <span id="modalClientBirthdate">Carregando...</span></div>
+                <div class="detail-row"><strong>Total Gasto:</strong> <span id="modalClientTotalGasto">Carregando...</span></div>
+                <div class="detail-row"><strong>Última Visita:</strong> <span id="modalClientLastVisit">Carregando...</span></div>
+                <div class="detail-row"><strong>Status:</strong> <span id="modalClientStatus">Carregando...</span></div>
+                <div class="detail-row"><strong>Observações:</strong> <span id="modalClientNotes">Nenhuma</span></div>
+            </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" onclick="editCurrentClient()"><i class="fas fa-edit"><\/i> Editar<\/button>
-                <button class="btn btn-danger" onclick="deleteCurrentClient()"><i class="fas fa-trash"><\/i> Excluir<\/button>
-                <button class="btn btn-secondary" onclick="closeModal()"><i class="fas fa-times"><\/i> Fechar<\/button>
-            <\/div>
-        <\/div>
-    <\/div>
+                <button class="btn btn-primary" onclick="editCurrentClient()"><i class="fas fa-edit"></i> Editar</button>
+                <button class="btn btn-danger" onclick="deleteCurrentClient()"><i class="fas fa-trash"></i> Excluir</button>
+                <button class="btn btn-secondary" onclick="closeModal()"><i class="fas fa-times"></i> Fechar</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         const SUPABASE_URL = 'https://opmpodjqdxtpdolvrzln.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_RYuRxp9GWjfyEMwE3bjMCg_lYIJOg5a';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        let currentBarbeariaId = null;
+        let currentSalonId = null;
         let currentUser = null;
         let clients = [];
         let editingClientId = null;
@@ -717,21 +732,21 @@
 
         function updateMobileUserInfo() {
             const userName = document.getElementById('userName')?.textContent || 'Usuário';
-            const barbershopName = document.getElementById('barbershopName')?.textContent || '';
+            const salonName = document.getElementById('salonName')?.textContent || '';
             
             const mobileUserName = document.getElementById('mobileUserName');
-            const mobileBarbershopName = document.getElementById('mobileBarbershopName');
+            const mobileSalonName = document.getElementById('mobileSalonName');
             
             if (mobileUserName) {
                 mobileUserName.textContent = userName;
             }
             
-            if (mobileBarbershopName && barbershopName) {
-                mobileBarbershopName.innerHTML = '<i class="fas fa-store"></i> ' + barbershopName;
+            if (mobileSalonName && salonName) {
+                mobileSalonName.innerHTML = '<i class="fas fa-store"></i> ' + salonName;
             }
         }
 
-        async function getCurrentBarbearia() {
+        async function getCurrentSalon() {
             try {
                 const userStr = sessionStorage.getItem('barberflow_user');
                 if (!userStr) {
@@ -742,7 +757,7 @@
                 currentUser = JSON.parse(userStr);
                 
                 if (currentUser.barbearia_id) {
-                    const { data: barbearia, error } = await supabaseClient
+                    const { data: salon, error } = await supabaseClient
                         .from('barbearias')
                         .select('*')
                         .eq('id', currentUser.barbearia_id)
@@ -750,14 +765,14 @@
                     
                     if (error) throw error;
                     
-                    currentBarbeariaId = barbearia.id;
-                    sessionStorage.setItem('currentBarbeariaId', barbearia.id);
-                    sessionStorage.setItem('currentBarbeariaName', barbearia.nome);
+                    currentSalonId = salon.id;
+                    sessionStorage.setItem('currentBarbeariaId', salon.id);
+                    sessionStorage.setItem('currentBarbeariaName', salon.nome);
                     
-                    const badge = document.getElementById('barbershopBadge');
-                    const nameSpan = document.getElementById('barbershopName');
-                    if (barbearia.nome && badge && nameSpan) {
-                        nameSpan.textContent = barbearia.nome;
+                    const badge = document.getElementById('salonBadge');
+                    const nameSpan = document.getElementById('salonName');
+                    if (salon.nome && badge && nameSpan) {
+                        nameSpan.textContent = salon.nome;
                         badge.style.display = 'inline-flex';
                     }
                 }
@@ -770,10 +785,10 @@
                 }
                 
                 updateMobileUserInfo();
-                return currentBarbeariaId;
+                return currentSalonId;
             } catch (error) {
-                console.error('Erro ao buscar barbearia:', error);
-                showAlert('error', 'Erro ao carregar dados da barbearia');
+                console.error('Erro ao buscar salão:', error);
+                showAlert('error', 'Erro ao carregar dados do salão');
                 return null;
             }
         }
@@ -783,7 +798,7 @@
                 const { data, error } = await supabaseClient
                     .from('clientes')
                     .select('*')
-                    .eq('barbearia_id', currentBarbeariaId)
+                    .eq('barbearia_id', currentSalonId)
                     .order('nome', { ascending: true });
                 
                 if (error) throw error;
@@ -812,13 +827,13 @@
                             updated_at: new Date().toISOString()
                         })
                         .eq('id', editingClientId)
-                        .eq('barbearia_id', currentBarbeariaId);
+                        .eq('barbearia_id', currentSalonId);
                 } else {
                     result = await supabaseClient
                         .from('clientes')
                         .insert([{
                             ...clientData,
-                            barbearia_id: currentBarbeariaId,
+                            barbearia_id: currentSalonId,
                             total_gasto: 0,
                             created_at: new Date().toISOString()
                         }]);
@@ -858,7 +873,7 @@
                     .from('clientes')
                     .delete()
                     .eq('id', id)
-                    .eq('barbearia_id', currentBarbeariaId);
+                    .eq('barbearia_id', currentSalonId);
                 
                 if (error) throw error;
                 
@@ -880,7 +895,7 @@
                         barbeiros (nome)
                     `)
                     .eq('cliente_id', id)
-                    .eq('barbearia_id', currentBarbeariaId)
+                    .eq('barbearia_id', currentSalonId)
                     .order('data_hora', { ascending: false })
                     .limit(10);
                 
@@ -957,7 +972,7 @@
                 for (const apt of history) {
                     historyHtml += '<div style="background: #f8f9fa; padding: 8px; margin-bottom: 5px; border-radius: 4px;">';
                     historyHtml += formatDateTime(apt.data_hora) + ' - ' + (apt.servicos?.nome || 'Serviço') + ' - ' + formatMoney(apt.valor_total);
-                    historyHtml += '<br><small>Barbeiro: ' + (apt.barbeiros?.nome || '-') + '</small>';
+                    historyHtml += '<br><small>Profissional: ' + (apt.barbeiros?.nome || '-') + '</small>';
                     historyHtml += '</div>';
                 }
                 historyHtml += '</div></div>';
@@ -1137,7 +1152,7 @@
             window.location.href = 'login.html';
         } else {
             (async () => {
-                await getCurrentBarbearia();
+                await getCurrentSalon();
                 await loadClients();
             })();
         }

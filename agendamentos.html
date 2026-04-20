@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendamentos - BarberFlow</title>
+    <title>Agendamentos - SalonFlow</title>
     <link rel="stylesheet" href="estilo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <style>
+   <style>
         * {
             margin: 0;
             padding: 0;
@@ -21,7 +21,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 77, 115, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -38,7 +38,7 @@
             max-width: 500px;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 90, 140, 0.3);
             animation: modalFadeIn 0.3s ease;
         }
 
@@ -54,7 +54,7 @@
         }
 
         .modal-header {
-            background: #000;
+            background: #005a8c;
             color: white;
             padding: 20px;
             display: flex;
@@ -95,27 +95,27 @@
 
         .modal-footer {
             padding: 15px 20px;
-            background: #f8f9fa;
+            background: #f0f7fa;
             display: flex;
             justify-content: flex-end;
             gap: 10px;
-            border-top: 1px solid #dee2e6;
+            border-top: 1px solid #cce7f0;
         }
 
         .detail-row {
             margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #cce7f0;
         }
 
         .detail-row strong {
             display: inline-block;
             min-width: 100px;
-            color: #555;
+            color: #2c6e9e;
         }
 
         .detail-row span {
-            color: #333;
+            color: #2c3e50;
         }
 
         .btn {
@@ -128,12 +128,13 @@
         }
 
         .btn-primary {
-            background: #000;
+            background: #005a8c;
             color: white;
         }
 
         .btn-primary:hover {
-            background: #333;
+            background: #0088cc;
+            transform: translateY(-2px);
         }
 
         .btn-secondary {
@@ -181,7 +182,7 @@
             display: inline-block;
             margin-top: 8px;
             padding: 6px 12px;
-            background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+            background: linear-gradient(135deg, #005a8c 0%, #0088cc 100%);
             color: white;
             text-decoration: none;
             border-radius: 6px;
@@ -193,9 +194,9 @@
         }
 
         .new-client-link:hover {
-            background: linear-gradient(135deg, #1e7e34 0%, #155724 100%);
+            background: linear-gradient(135deg, #004d73 0%, #0077b3 100%);
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 90, 140, 0.2);
         }
 
         .new-client-link i {
@@ -203,9 +204,9 @@
             font-size: 11px;
         }
 
-        .barbershop-badge {
-            background: #3498db;
-            color: white;
+        .salon-badge {
+            background: #a8d8f0;
+            color: #005a8c;
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
@@ -220,16 +221,16 @@
             margin-top: 20px;
             background: white;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 90, 140, 0.1);
         }
 
         .calendar-week-header {
             display: grid;
             grid-template-columns: 80px repeat(7, 1fr);
-            background: #000;
+            background: #005a8c;
             color: white;
             font-weight: bold;
-            border-bottom: 2px solid #dee2e6;
+            border-bottom: 2px solid #a8d8f0;
             min-width: 800px;
         }
 
@@ -237,7 +238,7 @@
         .calendar-day {
             padding: 15px 8px;
             text-align: center;
-            border-right: 1px solid #333;
+            border-right: 1px solid #0077b3;
         }
 
         .calendar-day:last-child {
@@ -252,14 +253,14 @@
             display: grid;
             grid-template-columns: 80px repeat(7, 1fr);
             min-height: 60px;
-            border-bottom: 1px solid #dee2e6;
+            border-bottom: 1px solid #cce7f0;
         }
 
         .hour-label {
             padding: 8px;
             text-align: center;
-            background: #f8f9fa;
-            border-right: 1px solid #dee2e6;
+            background: #f0f7fa;
+            border-right: 1px solid #cce7f0;
             font-size: 12px;
             font-weight: bold;
             display: flex;
@@ -268,7 +269,7 @@
         }
 
         .calendar-slot {
-            border-right: 1px solid #dee2e6;
+            border-right: 1px solid #cce7f0;
             padding: 4px;
             min-height: 60px;
             position: relative;
@@ -279,7 +280,7 @@
         }
 
         .appointment-card-calendar {
-            background: #3498db;
+            background: #0088cc;
             color: white;
             padding: 4px;
             border-radius: 4px;
@@ -291,7 +292,7 @@
 
         .appointment-card-calendar:hover {
             transform: scale(1.02);
-            background: #2980b9;
+            background: #005a8c;
         }
 
         .appointment-card-calendar.concluido {
@@ -313,11 +314,11 @@
 
         .appointment-item {
             background: white;
-            border-left: 4px solid #3498db;
+            border-left: 4px solid #0088cc;
             padding: 15px;
             margin-bottom: 10px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 90, 140, 0.1);
             cursor: pointer;
             transition: transform 0.2s;
             display: flex;
@@ -328,6 +329,7 @@
 
         .appointment-item:hover {
             transform: translateX(5px);
+            border-left-color: #005a8c;
         }
 
         .appointment-actions {
@@ -362,7 +364,7 @@
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 90, 140, 0.1);
         }
 
         .form-group {
@@ -373,13 +375,20 @@
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
+            color: #2c3e50;
         }
 
         .form-control {
             width: 100%;
             padding: 8px 12px;
-            border: 1px solid #dee2e6;
+            border: 1px solid #cce7f0;
             border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #005a8c;
         }
 
         .mt-20 {
@@ -423,28 +432,30 @@
         }
 
         .btn-calendar {
-            background: #333;
+            background: #0088cc;
             color: white;
             border: none;
             width: 36px;
             height: 36px;
             border-radius: 50%;
             cursor: pointer;
+            transition: background 0.3s;
         }
 
         .btn-calendar:hover {
-            background: #555;
+            background: #005a8c;
         }
 
         .week-range {
             font-weight: bold;
             min-width: 200px;
             text-align: center;
+            color: #005a8c;
         }
 
         .filter-select {
             padding: 8px 12px;
-            border: 1px solid #ddd;
+            border: 1px solid #cce7f0;
             border-radius: 4px;
         }
 
@@ -455,17 +466,17 @@
             flex-wrap: wrap;
             margin-top: 15px;
             padding-top: 15px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid #cce7f0;
         }
 
         .date-filter label {
             font-weight: bold;
-            color: #555;
+            color: #2c6e9e;
         }
 
         .date-filter input {
             padding: 6px 10px;
-            border: 1px solid #ddd;
+            border: 1px solid #cce7f0;
             border-radius: 4px;
         }
 
@@ -497,7 +508,7 @@
         /* Botão hambúrguer - visível apenas em mobile */
         .menu-toggle {
             display: none;
-            background: #333;
+            background: #0077b3;
             border: none;
             color: white;
             font-size: 1.5rem;
@@ -511,7 +522,7 @@
         }
 
         .menu-toggle:hover {
-            background: #555;
+            background: #0088cc;
         }
 
         /* Menu lateral para mobile */
@@ -521,10 +532,10 @@
             left: -100%;
             width: 300px;
             height: 100vh;
-            background: #111;
+            background: #004d73;
             z-index: 1000;
             transition: left 0.3s ease;
-            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 2px 0 15px rgba(0, 77, 115, 0.3);
             overflow-y: auto;
             display: block;
         }
@@ -536,10 +547,10 @@
 
         /* Informações do usuário no mobile */
         .mobile-user-info {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background: linear-gradient(135deg, #004d73 0%, #005a8c 100%);
             padding: 25px 20px;
             margin-bottom: 20px;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #0077b3;
             display: flex;
             align-items: center;
             gap: 15px;
@@ -549,7 +560,7 @@
         .mobile-user-avatar {
             width: 50px;
             height: 50px;
-            background: #333;
+            background: #0077b3;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -576,14 +587,14 @@
             margin-bottom: 5px;
         }
 
-        .mobile-barbershop-name {
+        .mobile-salon-name {
             font-size: 0.8rem;
-            color: #aaa;
+            color: #a8d8f0;
         }
 
-        .mobile-barbershop-name i {
+        .mobile-salon-name i {
             margin-right: 5px;
-            color: #3498db;
+            color: #a8d8f0;
         }
 
         .mobile-logout-btn {
@@ -613,7 +624,7 @@
         }
 
         .navbar li {
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid #005a8c;
         }
 
         .navbar a {
@@ -621,7 +632,7 @@
             align-items: center;
             gap: 12px;
             padding: 15px 20px;
-            color: #ddd;
+            color: #cce7f0;
             text-decoration: none;
             transition: all 0.3s;
             font-size: 1rem;
@@ -629,9 +640,9 @@
 
         .navbar a:hover,
         .navbar a.active {
-            background: #222;
+            background: #005a8c;
             color: white;
-            border-left: 4px solid white;
+            border-left: 4px solid #a8d8f0;
             padding-left: 16px;
         }
 
@@ -647,7 +658,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 77, 115, 0.5);
             z-index: 999;
             display: none;
         }
@@ -700,7 +711,7 @@
                 position: static;
                 width: auto;
                 height: auto;
-                background: #111;
+                background: #004d73;
                 box-shadow: none;
                 overflow: visible;
             }
@@ -725,8 +736,9 @@
             .navbar a:hover,
             .navbar a.active {
                 border-left: none;
-                border-bottom: 3px solid white;
+                border-bottom: 3px solid #a8d8f0;
                 padding-left: 20px;
+                background: transparent;
             }
             
             .mobile-user-info {
@@ -745,8 +757,8 @@
         <header class="header">
             <div class="logo-container">
                 <div class="logo">
-                    <i class="fas fa-cut"></i>
-                    <h1>BarberFlow <span id="barbershopBadge" class="barbershop-badge" style="display: none;"><i class="fas fa-store"></i> </span></h1>
+                    <i class="fas fa-spa"></i>
+                    <h1>SalonFlow <span id="salonBadge" class="salon-badge" style="display: none;"><i class="fas fa-store"></i> </span></h1>
                 </div>
 
                 <button class="menu-toggle" id="menuToggle">
@@ -768,7 +780,7 @@
                     </div>
                     <div class="mobile-user-details">
                         <span id="mobileUserName">Carregando...</span>
-                        <span id="mobileBarbershopName" class="mobile-barbershop-name"></span>
+                        <span id="mobileSalonName" class="mobile-salon-name"></span>
                     </div>
                     <button onclick="logout()" class="mobile-logout-btn">
                         <i class="fas fa-sign-out-alt"></i> Sair
@@ -787,7 +799,7 @@
         <main class="main-content">
             <div class="section">
                 <div class="calendar-header">
-                    <h2><i class="fas fa-calendar-alt"></i> Agenda da Barbearia</h2>
+                    <h2><i class="fas fa-calendar-alt"></i> Agenda do Salão</h2>
                     <div class="calendar-controls">
                         <button id="prevWeek" class="btn-calendar"><i class="fas fa-chevron-left"></i></button>
                         <span id="currentWeekRange" class="week-range">Carregando...</span>
@@ -824,9 +836,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="barberSelect">Barbeiro</label>
-                            <select id="barberSelect" class="form-control" required>
-                                <option value="">Selecione um barbeiro</option>
+                            <label for="professionalSelect">Profissional</label>
+                            <select id="professionalSelect" class="form-control" required>
+                                <option value="">Selecione um profissional</option>
                             </select>
                         </div>
 
@@ -867,9 +879,9 @@
 
                     <div style="display: flex; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 15px;">
                         <div style="display: flex; align-items: center; gap: 10px;">
-                            <strong>Filtrar por Barbeiro:</strong>
-                            <select class="filter-select" id="barberFilter" style="min-width: 200px;">
-                                <option value="">Todos os Barbeiros</option>
+                            <strong>Filtrar por Profissional:</strong>
+                            <select class="filter-select" id="professionalFilter" style="min-width: 200px;">
+                                <option value="">Todos os Profissionais</option>
                             </select>
                         </div>
                         <button id="clearFiltersBtn" class="btn btn-secondary" style="padding: 8px 15px;">
@@ -909,7 +921,7 @@
         </main>
 
         <footer class="footer">
-            <p>BarberFlow &copy; <span id="currentYear"></span> - Sistema de Gerenciamento</p>
+            <p>SalonFlow &copy; <span id="currentYear"></span> - Sistema de Gerenciamento de Salão</p>
         </footer>
     </div>
 
@@ -922,7 +934,7 @@
             <div class="modal-body" id="modalBody">
                 <div class="detail-row"><strong>Cliente:</strong> <span id="modalClientName">Carregando...</span></div>
                 <div class="detail-row"><strong>Serviço:</strong> <span id="modalServiceName">Carregando...</span></div>
-                <div class="detail-row"><strong>Barbeiro:</strong> <span id="modalBarber">Carregando...</span></div>
+                <div class="detail-row"><strong>Profissional:</strong> <span id="modalProfessional">Carregando...</span></div>
                 <div class="detail-row"><strong>Data/Hora:</strong> <span id="modalDateTime">Carregando...</span></div>
                 <div class="detail-row"><strong>Status:</strong> <span id="modalStatus">Carregando...</span></div>
                 <div class="detail-row"><strong>Valor:</strong> <span id="modalValue">Carregando...</span></div>
@@ -950,13 +962,13 @@
         const SUPABASE_KEY = 'sb_publishable_RYuRxp9GWjfyEMwE3bjMCg_lYIJOg5a';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        let currentBarbeariaId = null;
+        let currentSalonId = null;
         let currentUser = null;
         let allAppointments = [];
         let filteredAppointments = [];
         let clients = [];
         let services = [];
-        let barbers = [];
+        let professionals = [];
         let currentWeekStart = new Date();
         let selectedAppointmentId = null;
         let editingAppointmentId = null;
@@ -965,25 +977,25 @@
 
         function updateMobileUserInfo() {
             const userName = document.getElementById('userName')?.textContent || 'Usuário';
-            const barbershopName = document.getElementById('barbershopName')?.textContent || '';
+            const salonName = document.getElementById('salonName')?.textContent || '';
             
             const mobileUserName = document.getElementById('mobileUserName');
-            const mobileBarbershopName = document.getElementById('mobileBarbershopName');
+            const mobileSalonName = document.getElementById('mobileSalonName');
             
             if (mobileUserName) {
                 mobileUserName.textContent = userName;
             }
             
-            if (mobileBarbershopName) {
-                if (barbershopName) {
-                    mobileBarbershopName.innerHTML = `<i class="fas fa-store"></i> ${barbershopName}`;
+            if (mobileSalonName) {
+                if (salonName) {
+                    mobileSalonName.innerHTML = `<i class="fas fa-store"></i> ${salonName}`;
                 } else {
-                    mobileBarbershopName.innerHTML = '';
+                    mobileSalonName.innerHTML = '';
                 }
             }
         }
 
-        async function getCurrentBarbearia() {
+        async function getCurrentSalon() {
             try {
                 const userStr = sessionStorage.getItem('barberflow_user');
                 if (!userStr) {
@@ -994,7 +1006,7 @@
                 currentUser = JSON.parse(userStr);
 
                 if (currentUser.barbearia_id) {
-                    const { data: barbearia, error } = await supabaseClient
+                    const { data: salon, error } = await supabaseClient
                         .from('barbearias')
                         .select('*')
                         .eq('id', currentUser.barbearia_id)
@@ -1002,14 +1014,14 @@
 
                     if (error) throw error;
 
-                    currentBarbeariaId = barbearia.id;
-                    sessionStorage.setItem('currentBarbeariaId', barbearia.id);
-                    sessionStorage.setItem('currentBarbeariaName', barbearia.nome);
+                    currentSalonId = salon.id;
+                    sessionStorage.setItem('currentBarbeariaId', salon.id);
+                    sessionStorage.setItem('currentBarbeariaName', salon.nome);
 
-                    const badge = document.getElementById('barbershopBadge');
-                    const nameSpan = document.getElementById('barbershopName');
-                    if (barbearia.nome && badge && nameSpan) {
-                        nameSpan.textContent = barbearia.nome;
+                    const badge = document.getElementById('salonBadge');
+                    const nameSpan = document.getElementById('salonName');
+                    if (salon.nome && badge && nameSpan) {
+                        nameSpan.textContent = salon.nome;
                         badge.style.display = 'inline-flex';
                     }
                 }
@@ -1022,20 +1034,20 @@
                 }
 
                 updateMobileUserInfo();
-                return currentBarbeariaId;
+                return currentSalonId;
             } catch (error) {
-                console.error('Erro ao buscar barbearia:', error);
-                showAlert('Erro ao carregar dados da barbearia', 'error');
+                console.error('Erro ao buscar salão:', error);
+                showAlert('Erro ao carregar dados do salão', 'error');
                 return null;
             }
         }
 
         async function loadInitialData() {
-            await getCurrentBarbearia();
+            await getCurrentSalon();
             await Promise.all([
                 loadClients(),
                 loadServices(),
-                loadBarbers(),
+                loadProfessionals(),
                 loadAppointments()
             ]);
 
@@ -1064,7 +1076,7 @@
                 const { data, error } = await supabaseClient
                     .from('clientes')
                     .select('id, nome, telefone')
-                    .eq('barbearia_id', currentBarbeariaId)
+                    .eq('barbearia_id', currentSalonId)
                     .eq('status', 'ativo')
                     .order('nome');
 
@@ -1083,7 +1095,7 @@
                 const { data, error } = await supabaseClient
                     .from('servicos')
                     .select('id, nome, preco, duracao_minutos')
-                    .eq('barbearia_id', currentBarbeariaId)
+                    .eq('barbearia_id', currentSalonId)
                     .eq('status', 'ativo')
                     .order('nome');
 
@@ -1097,22 +1109,22 @@
             }
         }
 
-        async function loadBarbers() {
+        async function loadProfessionals() {
             try {
                 const { data, error } = await supabaseClient
                     .from('barbeiros')
                     .select('id, nome, especialidade')
-                    .eq('barbearia_id', currentBarbeariaId)
+                    .eq('barbearia_id', currentSalonId)
                     .eq('status', 'ativo')
                     .order('nome');
 
                 if (error) throw error;
-                barbers = data || [];
-                populateBarberSelect();
-                populateBarberFilter();
-                return barbers;
+                professionals = data || [];
+                populateProfessionalSelect();
+                populateProfessionalFilter();
+                return professionals;
             } catch (error) {
-                console.error('Erro ao carregar barbeiros:', error);
+                console.error('Erro ao carregar profissionais:', error);
                 return [];
             }
         }
@@ -1127,11 +1139,11 @@
                         barbeiros (id, nome),
                         servicos (id, nome, preco)
                     `)
-                    .eq('barbearia_id', currentBarbeariaId);
+                    .eq('barbearia_id', currentSalonId);
 
-                const barberFilter = document.getElementById('barberFilter')?.value;
-                if (barberFilter) {
-                    query = query.eq('barbeiro_id', barberFilter);
+                const professionalFilter = document.getElementById('professionalFilter')?.value;
+                if (professionalFilter) {
+                    query = query.eq('barbeiro_id', professionalFilter);
                 }
 
                 if (customStartDate && customEndDate) {
@@ -1175,7 +1187,7 @@
                         .from('agendamentos')
                         .insert([{
                             ...appointmentData,
-                            barbearia_id: currentBarbeariaId
+                            barbearia_id: currentSalonId
                         }]);
                 }
 
@@ -1265,35 +1277,12 @@
             }
         }
 
-        async function confirmAppointment(id) {
-            if (!confirm('Confirmar este agendamento?')) return;
-
-            try {
-                const { error } = await supabaseClient
-                    .from('agendamentos')
-                    .update({ status: 'confirmado' })
-                    .eq('id', id);
-
-                if (error) throw error;
-
-                showAlert('Agendamento confirmado!', 'success');
-                await loadAppointments();
-                updateCalendarDays();
-                renderWeekCalendar();
-                renderAppointmentsList();
-                closeModal();
-            } catch (error) {
-                console.error('Erro ao confirmar agendamento:', error);
-                showAlert('Erro ao confirmar agendamento', 'error');
-            }
-        }
-
-        async function checkAvailability(barberId, datetime) {
+        async function checkAvailability(professionalId, datetime) {
             try {
                 const { data, error } = await supabaseClient
                     .from('agendamentos')
                     .select('id')
-                    .eq('barbeiro_id', barberId)
+                    .eq('barbeiro_id', professionalId)
                     .eq('data_hora', datetime)
                     .neq('status', 'cancelado');
 
@@ -1326,24 +1315,24 @@
                 services.map(s => `<option value="${s.id}">${s.nome} - R$ ${s.preco} (${s.duracao_minutos}min)</option>`).join('');
         }
 
-        function populateBarberSelect() {
-            const select = document.getElementById('barberSelect');
+        function populateProfessionalSelect() {
+            const select = document.getElementById('professionalSelect');
             if (!select) return;
 
-            select.innerHTML = '<option value="">Selecione um barbeiro</option>' +
-                barbers.map(b => `<option value="${b.id}">${b.nome} - ${b.especialidade || ''}</option>`).join('');
+            select.innerHTML = '<option value="">Selecione um profissional</option>' +
+                professionals.map(p => `<option value="${p.id}">${p.nome} - ${p.especialidade || ''}</option>`).join('');
         }
 
-        function populateBarberFilter() {
-            const select = document.getElementById('barberFilter');
+        function populateProfessionalFilter() {
+            const select = document.getElementById('professionalFilter');
             if (!select) return;
 
-            select.innerHTML = '<option value="">Todos os Barbeiros</option>' +
-                barbers.map(b => `<option value="${b.id}">${b.nome}</option>`).join('');
+            select.innerHTML = '<option value="">Todos os Profissionais</option>' +
+                professionals.map(p => `<option value="${p.id}">${p.nome}</option>`).join('');
         }
 
         function populateFilters() {
-            populateBarberFilter();
+            populateProfessionalFilter();
         }
 
         function setupWeekNavigation() {
@@ -1475,7 +1464,7 @@
                         eventDiv.innerHTML = `
                             <strong>${apt.clientes?.nome?.substring(0, 12) || 'Cliente'}</strong><br>
                             ${apt.servicos?.nome?.substring(0, 10) || 'Serviço'}<br>
-                            ${apt.barbeiros?.nome?.substring(0, 8) || 'Barbeiro'}
+                            ${apt.barbeiros?.nome?.substring(0, 8) || 'Profissional'}
                         `;
                         slot.appendChild(eventDiv);
                     }
@@ -1507,7 +1496,7 @@
                                 ${apt.servicos?.nome || 'Serviço'}
                             </div>
                             <div style="font-size: 14px; color: #666; margin-top: 8px;">
-                                <i class="fas fa-user"></i> ${apt.barbeiros?.nome || 'Barbeiro'} | 
+                                <i class="fas fa-user"></i> ${apt.barbeiros?.nome || 'Profissional'} | 
                                 <i class="fas fa-calendar"></i> ${formatDateTime(apt.data_hora)} |
                                 <i class="fas fa-money-bill"></i> ${formatMoney(apt.valor_total)}
                             </div>
@@ -1577,7 +1566,7 @@
 
             document.getElementById('modalClientName').textContent = appointment.clientes?.nome || 'N/A';
             document.getElementById('modalServiceName').textContent = appointment.servicos?.nome || 'N/A';
-            document.getElementById('modalBarber').textContent = appointment.barbeiros?.nome || 'N/A';
+            document.getElementById('modalProfessional').textContent = appointment.barbeiros?.nome || 'N/A';
             document.getElementById('modalDateTime').textContent = formatDateTime(appointment.data_hora);
             document.getElementById('modalStatus').innerHTML = `<span class="status-badge status-${appointment.status}">${getStatusText(appointment.status)}</span>`;
             document.getElementById('modalValue').textContent = formatMoney(appointment.valor_total);
@@ -1614,7 +1603,7 @@
 
             document.getElementById('clientSelect').value = appointment.cliente_id;
             document.getElementById('serviceSelect').value = appointment.servico_id;
-            document.getElementById('barberSelect').value = appointment.barbeiro_id;
+            document.getElementById('professionalSelect').value = appointment.barbeiro_id;
 
             const date = new Date(appointment.data_hora);
             document.getElementById('appointmentDate').value = date.toISOString().split('T')[0];
@@ -1692,7 +1681,7 @@
             const formData = {
                 cliente_id: document.getElementById('clientSelect').value,
                 servico_id: document.getElementById('serviceSelect').value,
-                barbeiro_id: document.getElementById('barberSelect').value,
+                barbeiro_id: document.getElementById('professionalSelect').value,
                 data_hora: `${document.getElementById('appointmentDate').value}T${document.getElementById('appointmentTime').value}:00`,
                 status: document.getElementById('appointmentStatus').value,
                 observacoes: document.getElementById('appointmentNotes').value,
@@ -1715,14 +1704,14 @@
         });
 
         document.getElementById('clearFiltersBtn')?.addEventListener('click', async () => {
-            document.getElementById('barberFilter').value = '';
+            document.getElementById('professionalFilter').value = '';
             await loadAppointments();
             updateCalendarDays();
             renderWeekCalendar();
             renderAppointmentsList();
         });
 
-        document.getElementById('barberFilter')?.addEventListener('change', async () => {
+        document.getElementById('professionalFilter')?.addEventListener('change', async () => {
             await loadAppointments();
             updateCalendarDays();
             renderWeekCalendar();
@@ -1751,7 +1740,6 @@
         window.editAppointment = editAppointment;
         window.completeAppointment = completeAppointment;
         window.cancelAppointment = cancelAppointment;
-        window.confirmAppointment = confirmAppointment;
         window.deleteAppointment = deleteAppointment;
 
         document.getElementById('currentYear').textContent = new Date().getFullYear();

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financeiro - BarberFlow</title>
+    <title>Financeiro - SalonFlow</title>
     <link rel="stylesheet" href="estilo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -29,15 +29,20 @@
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 90, 140, 0.1);
         }
         .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #2c3e50; }
         .form-control {
             width: 100%;
             padding: 8px 12px;
-            border: 1px solid #dee2e6;
+            border: 1px solid #cce7f0;
             border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: #005a8c;
         }
         .alert {
             padding: 12px;
@@ -63,7 +68,11 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 90, 140, 0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
         }
         .card-icon {
             width: 60px;
@@ -72,10 +81,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            background: linear-gradient(135deg, #005a8c 0%, #0088cc 100%);
         }
         .card-icon i { font-size: 24px; color: white; }
-        .card-content h3 { font-size: 14px; color: #666; margin-bottom: 5px; }
-        .card-value { font-size: 24px; font-weight: bold; margin: 0; }
+        .card-content h3 { font-size: 14px; color: #2c6e9e; margin-bottom: 5px; }
+        .card-value { font-size: 24px; font-weight: bold; margin: 0; color: #005a8c; }
         .charts-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -86,16 +96,21 @@
             background: white;
             border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 90, 140, 0.1);
+        }
+        .chart-box h3 {
+            color: #005a8c;
+            margin-bottom: 15px;
         }
         .chart-wrapper { height: 300px; }
         .table-responsive-container { overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #dee2e6; }
-        th { background: #f8f9fa; font-weight: bold; }
-        .barbershop-badge {
-            background: #3498db;
-            color: white;
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #cce7f0; }
+        th { background: #f0f7fa; font-weight: bold; color: #005a8c; }
+        tr:hover { background: #f0f7fa; }
+        .salon-badge {
+            background: #a8d8f0;
+            color: #005a8c;
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
@@ -110,7 +125,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 77, 115, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -123,10 +138,10 @@
             max-width: 500px;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0, 90, 140, 0.3);
         }
         .modal-header {
-            background: #000;
+            background: #005a8c;
             color: white;
             padding: 20px;
             display: flex;
@@ -139,15 +154,19 @@
             color: white;
             font-size: 1.8rem;
             cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        .modal-close:hover {
+            opacity: 0.8;
         }
         .modal-body { padding: 20px; }
         .modal-footer {
             padding: 15px 20px;
-            background: #f8f9fa;
+            background: #f0f7fa;
             display: flex;
             justify-content: flex-end;
             gap: 10px;
-            border-top: 1px solid #dee2e6;
+            border-top: 1px solid #cce7f0;
         }
         .btn {
             padding: 10px 20px;
@@ -157,15 +176,78 @@
             font-weight: 600;
             transition: all 0.3s;
         }
-        .btn-primary { background: #000; color: white; }
-        .btn-primary:hover { background: #333; }
+        .btn-primary { background: #005a8c; color: white; }
+        .btn-primary:hover { background: #0088cc; transform: translateY(-2px); }
         .btn-secondary { background: #6c757d; color: white; }
+        .btn-secondary:hover { background: #5a6268; }
         .btn-danger { background: #dc3545; color: white; }
+        .btn-danger:hover { background: #c82333; }
         .btn-warning { background: #ffc107; color: #333; }
+        .btn-warning:hover { background: #e0a800; }
+        
+        /* Filtros e controles adicionais */
+        .filter-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .filter-group select, 
+        .filter-group input {
+            padding: 8px 12px;
+            border: 1px solid #cce7f0;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: #005a8c;
+        }
+        
+        .summary-total {
+            font-size: 18px;
+            font-weight: bold;
+            color: #005a8c;
+            text-align: right;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #cce7f0;
+        }
+        
         @media (max-width: 768px) {
             .charts-container { grid-template-columns: 1fr; }
             .chart-wrapper { height: 250px; }
             .card { flex-direction: column; text-align: center; }
+            .filter-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .filter-group select,
+            .filter-group input,
+            .filter-group button {
+                width: 100%;
+            }
+            .summary-total {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card-icon {
+                width: 50px;
+                height: 50px;
+            }
+            .card-value {
+                font-size: 20px;
+            }
+            th, td {
+                padding: 8px;
+                font-size: 13px;
+            }
         }
     </style>
 </head>
@@ -175,8 +257,8 @@
         <header class="header">
             <div class="logo-container">
                 <div class="logo">
-                    <i class="fas fa-cut"></i>
-                    <h1>BarberFlow <span id="barbershopBadge" class="barbershop-badge" style="display: none;"><i class="fas fa-store"></i> </span></span></h1>
+                    <i class="fas fa-spa"></i>
+                    <h1>SalonFlow <span id="salonBadge" class="salon-badge" style="display: none;"><i class="fas fa-store"></i> </span></h1>
                 </div>
 
                 <button class="menu-toggle" id="menuToggle">
@@ -198,7 +280,7 @@
                     </div>
                     <div class="mobile-user-details">
                         <span id="mobileUserName">Carregando...</span>
-                        <span id="mobileBarbershopName" class="mobile-barbershop-name"></span>
+                        <span id="mobileSalonName" class="mobile-salon-name"></span>
                     </div>
                     <button onclick="logout()" class="mobile-logout-btn">
                         <i class="fas fa-sign-out-alt"></i> Sair
@@ -389,7 +471,7 @@
                 </div>
 
                 <div class="section">
-                    <h3><i class="fas fa-cut"></i> Serviços Realizados (Receitas)</h3>
+                    <h3><i class="fas fa-spa"></i> Serviços Realizados (Receitas)</h3>
                     <div class="table-responsive-container">
                         <table id="servicesReportTable">
                             <thead>
@@ -397,7 +479,7 @@
                                     <th>Data</th>
                                     <th>Cliente</th>
                                     <th>Serviço</th>
-                                    <th>Barbeiro</th>
+                                    <th>Profissional</th>
                                     <th>Valor</th>
                                     <th>Status</th>
                                 </tr>
@@ -417,19 +499,19 @@
                 </div>
 
                 <div class="section">
-                    <h3><i class="fas fa-user-tie"></i> Desempenho por Barbeiro</h3>
+                    <h3><i class="fas fa-user-tie"></i> Desempenho por Profissional</h3>
                     <div class="table-responsive-container">
-                        <table id="barberPerformanceTable">
+                        <table id="professionalPerformanceTable">
                             <thead>
                                 <tr>
-                                    <th>Barbeiro</th>
+                                    <th>Profissional</th>
                                     <th>Serviços Realizados</th>
                                     <th>Total Receita</th>
                                     <th>Comissão (50%)</th>
                                     <th>Média por Serviço</th>
                                 </tr>
                             </thead>
-                            <tbody id="barberTableBody">
+                            <tbody id="professionalTableBody">
                                 <tr><td colspan="5" style="text-align: center;">Carregando...</td></tr>
                             </tbody>
                         </table>
@@ -439,7 +521,7 @@
         </main>
 
         <footer class="footer">
-            <p>BarberFlow &copy; <span id="currentYear"></span> - Sistema de Gerenciamento</p>
+            <p>SalonFlow &copy; <span id="currentYear"></span> - Sistema de Gerenciamento de Salão</p>
         </footer>
     </div>
 
@@ -464,11 +546,11 @@
         const SUPABASE_KEY = 'sb_publishable_RYuRxp9GWjfyEMwE3bjMCg_lYIJOg5a';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        let currentBarbeariaId = null;
+        let currentSalonId = null;
         let currentUser = null;
         let expenses = [];
         let completedServices = [];
-        let barbers = [];
+        let professionals = [];
         let revenueExpenseChart = null;
         let expensesCategoryChart = null;
         let pendingDeleteId = null;
@@ -476,25 +558,25 @@
 
         function updateMobileUserInfo() {
             const userName = document.getElementById('userName')?.textContent || 'Usuário';
-            const barbershopName = document.getElementById('barbershopName')?.textContent || '';
+            const salonName = document.getElementById('salonName')?.textContent || '';
             
             const mobileUserName = document.getElementById('mobileUserName');
-            const mobileBarbershopName = document.getElementById('mobileBarbershopName');
+            const mobileSalonName = document.getElementById('mobileSalonName');
             
             if (mobileUserName) {
                 mobileUserName.textContent = userName;
             }
             
-            if (mobileBarbershopName) {
-                if (barbershopName) {
-                    mobileBarbershopName.innerHTML = '<i class="fas fa-store"></i> ' + barbershopName;
+            if (mobileSalonName) {
+                if (salonName) {
+                    mobileSalonName.innerHTML = '<i class="fas fa-store"></i> ' + salonName;
                 } else {
-                    mobileBarbershopName.innerHTML = '';
+                    mobileSalonName.innerHTML = '';
                 }
             }
         }
 
-        async function getCurrentBarbearia() {
+        async function getCurrentSalon() {
             try {
                 const userStr = sessionStorage.getItem('barberflow_user');
                 if (!userStr) {
@@ -505,7 +587,7 @@
                 currentUser = JSON.parse(userStr);
                 
                 if (currentUser.barbearia_id) {
-                    const { data: barbearia, error } = await supabaseClient
+                    const { data: salon, error } = await supabaseClient
                         .from('barbearias')
                         .select('*')
                         .eq('id', currentUser.barbearia_id)
@@ -513,14 +595,14 @@
                     
                     if (error) throw error;
                     
-                    currentBarbeariaId = barbearia.id;
-                    sessionStorage.setItem('currentBarbeariaId', barbearia.id);
-                    sessionStorage.setItem('currentBarbeariaName', barbearia.nome);
+                    currentSalonId = salon.id;
+                    sessionStorage.setItem('currentBarbeariaId', salon.id);
+                    sessionStorage.setItem('currentBarbeariaName', salon.nome);
                     
-                    const badge = document.getElementById('barbershopBadge');
-                    const nameSpan = document.getElementById('barbershopName');
-                    if (barbearia.nome && badge && nameSpan) {
-                        nameSpan.textContent = barbearia.nome;
+                    const badge = document.getElementById('salonBadge');
+                    const nameSpan = document.getElementById('salonName');
+                    if (salon.nome && badge && nameSpan) {
+                        nameSpan.textContent = salon.nome;
                         badge.style.display = 'inline-flex';
                     }
                 }
@@ -533,26 +615,26 @@
                 }
                 
                 updateMobileUserInfo();
-                return currentBarbeariaId;
+                return currentSalonId;
             } catch (error) {
                 console.error('Erro:', error);
                 return null;
             }
         }
 
-        async function loadBarbers() {
+        async function loadProfessionals() {
             try {
                 const { data, error } = await supabaseClient
                     .from('barbeiros')
                     .select('id, nome')
-                    .eq('barbearia_id', currentBarbeariaId)
+                    .eq('barbearia_id', currentSalonId)
                     .eq('status', 'ativo');
                 
                 if (error) throw error;
-                barbers = data || [];
-                return barbers;
+                professionals = data || [];
+                return professionals;
             } catch (error) {
-                console.error('Erro ao carregar barbeiros:', error);
+                console.error('Erro ao carregar profissionais:', error);
                 return [];
             }
         }
@@ -562,7 +644,7 @@
                 let query = supabaseClient
                     .from('financeiro')
                     .select('*')
-                    .eq('barbearia_id', currentBarbeariaId)
+                    .eq('barbearia_id', currentSalonId)
                     .eq('tipo', 'despesa');
                 
                 const { startDate, endDate } = getDateRange();
@@ -596,7 +678,7 @@
                         barbeiros (nome),
                         servicos (nome, preco)
                     `)
-                    .eq('barbearia_id', currentBarbeariaId)
+                    .eq('barbearia_id', currentSalonId)
                     .eq('status', 'concluido');
                 
                 if (startDate) {
@@ -628,7 +710,7 @@
                         valor: expenseData.valor,
                         data_movimento: expenseData.data_movimento,
                         forma_pagamento: expenseData.forma_pagamento || null,
-                        barbearia_id: currentBarbeariaId,
+                        barbearia_id: currentSalonId,
                         status: 'confirmado'
                     }]);
                 
@@ -651,7 +733,7 @@
                     .from('financeiro')
                     .delete()
                     .eq('id', id)
-                    .eq('barbearia_id', currentBarbeariaId);
+                    .eq('barbearia_id', currentSalonId);
                 
                 if (error) throw error;
                 
@@ -845,27 +927,27 @@
             document.getElementById('servicesTotal').textContent = formatMoney(total);
         }
 
-        function renderBarberPerformance() {
-            const tbody = document.getElementById('barberTableBody');
+        function renderProfessionalPerformance() {
+            const tbody = document.getElementById('professionalTableBody');
             if (!tbody) return;
             
-            const barberStats = {};
+            const professionalStats = {};
             
             completedServices.forEach(service => {
-                const barberId = service.barbeiro_id;
-                const barberName = service.barbeiros?.nome || 'Desconhecido';
-                if (!barberStats[barberId]) {
-                    barberStats[barberId] = {
-                        nome: barberName,
+                const professionalId = service.barbeiro_id;
+                const professionalName = service.barbeiros?.nome || 'Desconhecido';
+                if (!professionalStats[professionalId]) {
+                    professionalStats[professionalId] = {
+                        nome: professionalName,
                         quantidade: 0,
                         total: 0
                     };
                 }
-                barberStats[barberId].quantidade++;
-                barberStats[barberId].total += service.valor_total;
+                professionalStats[professionalId].quantidade++;
+                professionalStats[professionalId].total += service.valor_total;
             });
             
-            const statsArray = Object.values(barberStats);
+            const statsArray = Object.values(professionalStats);
             
             if (statsArray.length === 0) {
                 tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">Nenhum dado disponível</td></tr>';
@@ -962,11 +1044,11 @@
         async function refreshData() {
             await loadExpenses();
             await loadCompletedServices();
-            await loadBarbers();
+            await loadProfessionals();
             updateSummaryCards();
             updateCharts();
             renderServicesTable();
-            renderBarberPerformance();
+            renderProfessionalPerformance();
             if (!document.getElementById('expensesListContainer').classList.contains('hidden')) {
                 renderExpensesTable();
             }
@@ -1042,7 +1124,7 @@
             window.location.href = 'login.html';
         } else {
             (async () => {
-                await getCurrentBarbearia();
+                await getCurrentSalon();
                 await refreshData();
             })();
         }

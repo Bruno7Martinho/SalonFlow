@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - BarberFlow</title>
+    <title>Dashboard - SalonFlow</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
@@ -16,8 +16,8 @@
         }
 
         body {
-            background-color: #f5f5f5;
-            color: #333;
+            background-color: #e8f4f8;
+            color: #2c3e50;
             line-height: 1.6;
         }
 
@@ -28,9 +28,9 @@
         }
 
         .header {
-            background-color: #000;
+            background-color: #005a8c;
             color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0, 90, 140, 0.2);
             position: relative;
         }
 
@@ -39,7 +39,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px 30px;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #0077b3;
         }
 
         .logo {
@@ -50,7 +50,7 @@
 
         .logo i {
             font-size: 2.5rem;
-            color: white;
+            color: #a8d8f0;
         }
 
         .logo h1 {
@@ -66,7 +66,7 @@
         }
 
         .btn-logout {
-            background-color: #333;
+            background-color: #0077b3;
             color: white;
             border: none;
             padding: 8px 15px;
@@ -76,11 +76,11 @@
         }
 
         .btn-logout:hover {
-            background-color: #555;
+            background-color: #0088cc;
         }
 
         .navbar {
-            background-color: #111;
+            background-color: #004d73;
         }
 
         .navbar ul {
@@ -97,7 +97,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #ddd;
+            color: #cce7f0;
             text-decoration: none;
             padding: 15px 20px;
             transition: all 0.3s;
@@ -107,9 +107,9 @@
         }
 
         .navbar a:hover, .navbar a.active {
-            background-color: #222;
+            background-color: #005a8c;
             color: white;
-            border-bottom: 3px solid white;
+            border-bottom: 3px solid #a8d8f0;
         }
 
         .navbar i {
@@ -118,7 +118,7 @@
 
         .menu-toggle {
             display: none;
-            background: #333;
+            background: #0077b3;
             border: none;
             color: white;
             font-size: 1.5rem;
@@ -134,6 +134,10 @@
             z-index: 1001;
         }
 
+        .menu-toggle:hover {
+            background: #0088cc;
+        }
+
         .main-content {
             flex: 1;
             padding: 30px;
@@ -143,12 +147,13 @@
         }
 
         .datetime-widget {
-            background: linear-gradient(135deg, #000 0%, #333 100%);
+            background: linear-gradient(135deg, #005a8c 0%, #0088cc 100%);
             color: white;
             padding: 20px;
             border-radius: 15px;
             text-align: center;
             margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 90, 140, 0.2);
         }
 
         .current-time {
@@ -168,12 +173,12 @@
             padding: 20px;
             border-radius: 15px;
             margin-bottom: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 90, 140, 0.1);
         }
 
         .welcome-section h2 {
             margin: 0 0 10px 0;
-            color: #333;
+            color: #005a8c;
         }
 
         .stats-grid {
@@ -188,7 +193,7 @@
             padding: 20px;
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 90, 140, 0.1);
             transition: transform 0.3s;
         }
 
@@ -198,20 +203,20 @@
 
         .stat-card i {
             font-size: 2.5rem;
-            color: #000;
+            color: #005a8c;
             margin-bottom: 10px;
         }
 
         .stat-card h3 {
             font-size: 0.9rem;
-            color: #666;
+            color: #2c6e9e;
             margin-bottom: 10px;
         }
 
         .stat-value {
             font-size: 2rem;
             font-weight: bold;
-            color: #333;
+            color: #005a8c;
         }
 
         .stat-change {
@@ -230,7 +235,7 @@
         }
 
         .action-btn {
-            background: linear-gradient(135deg, #000 0%, #333 100%);
+            background: linear-gradient(135deg, #005a8c 0%, #0088cc 100%);
             color: white;
             padding: 15px;
             border-radius: 12px;
@@ -246,6 +251,7 @@
         .action-btn:hover {
             transform: translateY(-3px);
             color: white;
+            background: linear-gradient(135deg, #004d73 0%, #0077b3 100%);
         }
 
         .recent-appointments {
@@ -253,12 +259,12 @@
             border-radius: 15px;
             padding: 20px;
             margin-bottom: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 90, 140, 0.1);
         }
 
         .recent-appointments h3 {
             margin-bottom: 20px;
-            color: #333;
+            color: #005a8c;
         }
 
         .appointment-item {
@@ -266,7 +272,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 15px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #cce7f0;
             flex-wrap: wrap;
             gap: 10px;
         }
@@ -277,7 +283,7 @@
 
         .appointment-info h4 {
             margin: 0 0 5px 0;
-            color: #333;
+            color: #2c3e50;
         }
 
         .appointment-meta {
@@ -285,7 +291,7 @@
             gap: 15px;
             flex-wrap: wrap;
             font-size: 0.85rem;
-            color: #666;
+            color: #2c6e9e;
         }
 
         .appointment-meta i {
@@ -307,15 +313,16 @@
         .empty-state {
             text-align: center;
             padding: 40px;
-            color: #999;
+            color: #2c6e9e;
         }
 
         .empty-state i {
             font-size: 3rem;
             margin-bottom: 10px;
+            color: #a8d8f0;
         }
 
-        .barber-card {
+        .professional-card {
             background: white;
             padding: 20px;
             border-radius: 12px;
@@ -324,12 +331,12 @@
             grid-template-columns: auto 1fr auto;
             gap: 20px;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 90, 140, 0.1);
         }
 
-        .barbershop-badge {
-            background: #3498db;
-            color: white;
+        .salon-badge {
+            background: #a8d8f0;
+            color: #005a8c;
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
@@ -340,8 +347,8 @@
         }
 
         .footer {
-            background-color: #000;
-            color: #ddd;
+            background-color: #005a8c;
+            color: #cce7f0;
             padding: 20px 30px;
             text-align: center;
             margin-top: 40px;
@@ -376,10 +383,10 @@
                 left: -100%;
                 width: 280px;
                 height: 100vh;
-                background: #111;
+                background: #004d73;
                 z-index: 1000;
                 transition: left 0.3s ease;
-                box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
                 overflow-y: auto;
             }
             
@@ -394,7 +401,7 @@
             
             .navbar li {
                 width: 100%;
-                border-bottom: 1px solid #222;
+                border-bottom: 1px solid #005a8c;
             }
             
             .navbar a {
@@ -405,15 +412,16 @@
             }
             
             .navbar a:hover, .navbar a.active {
-                border-left: 4px solid white;
+                border-left: 4px solid #a8d8f0;
                 border-bottom: none;
+                background: #005a8c;
             }
             
             .mobile-user-info {
-                background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+                background: linear-gradient(135deg, #004d73 0%, #005a8c 100%);
                 padding: 25px 20px;
                 margin-bottom: 20px;
-                border-bottom: 1px solid #333;
+                border-bottom: 1px solid #0077b3;
                 display: flex;
                 align-items: center;
                 gap: 15px;
@@ -423,7 +431,7 @@
             .mobile-user-avatar {
                 width: 50px;
                 height: 50px;
-                background: #333;
+                background: #0077b3;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
@@ -450,14 +458,14 @@
                 margin-bottom: 5px;
             }
             
-            .mobile-barbershop-name {
+            .mobile-salon-name {
                 font-size: 0.8rem;
-                color: #aaa;
+                color: #a8d8f0;
             }
             
-            .mobile-barbershop-name i {
+            .mobile-salon-name i {
                 margin-right: 5px;
-                color: #3498db;
+                color: #a8d8f0;
             }
             
             .mobile-logout-btn {
@@ -485,7 +493,7 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: rgba(0,0,0,0.5);
+                background: rgba(0, 77, 115, 0.5);
                 z-index: 999;
                 display: none;
             }
@@ -494,7 +502,7 @@
                 display: block;
             }
             
-            .barber-card {
+            .professional-card {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
@@ -530,7 +538,7 @@
                 position: static;
                 width: auto;
                 height: auto;
-                background: #111;
+                background: #004d73;
                 box-shadow: none;
                 overflow: visible;
             }
@@ -555,7 +563,7 @@
             .navbar a:hover,
             .navbar a.active {
                 border-left: none;
-                border-bottom: 3px solid white;
+                border-bottom: 3px solid #a8d8f0;
             }
             
             .mobile-user-info {
@@ -574,9 +582,8 @@
         <header class="header">
             <div class="logo-container">
                 <div class="logo">
-                    <i class="fas fa-cut"></i>
-                   
-                    <h1>BarberFlow <span id="barbershopBadge" class="barbershop-badge" style="display: none;"><i class="fas fa-store"></i></span></span></h1>
+                    <i class="fas fa-spa"></i>
+                    <h1>SalonFlow <span id="salonBadge" class="salon-badge" style="display: none;"><i class="fas fa-store"></i></span></h1>
                 </div>
 
                 <button class="menu-toggle" id="menuToggle">
@@ -598,7 +605,7 @@
                     </div>
                     <div class="mobile-user-details">
                         <span id="mobileUserName">Carregando...</span>
-                        <span id="mobileBarbershopName" class="mobile-barbershop-name"></span>
+                        <span id="mobileSalonName" class="mobile-salon-name"></span>
                     </div>
                     <button onclick="logout()" class="mobile-logout-btn">
                         <i class="fas fa-sign-out-alt"></i> Sair
@@ -621,7 +628,7 @@
             </div>
 
             <div class="welcome-section fade-in">
-                <h2 id="welcomeMessage">Bem-vindo ao BarberFlow</h2>
+                <h2 id="welcomeMessage">Bem-vindo ao SalonFlow</h2>
                 <p id="dashboardMessage">Carregando informações do sistema...</p>
             </div>
 
@@ -688,18 +695,18 @@
             </div>
 
             <div class="recent-appointments fade-in">
-                <h3><i class="fas fa-user-tie"></i> Desempenho dos Barbeiros (Este Mês)</h3>
-                <div id="barberPerformance">
+                <h3><i class="fas fa-user-tie"></i> Desempenho dos Profissionais (Este Mês)</h3>
+                <div id="professionalPerformance">
                     <div class="empty-state">
                         <i class="fas fa-spinner fa-spin"></i>
-                        <p>Carregando desempenho dos barbeiros...</p>
+                        <p>Carregando desempenho dos profissionais...</p>
                     </div>
                 </div>
             </div>
         </main>
 
         <footer class="footer">
-            <p>BarberFlow © <span id="currentYear"></span> - Sistema de Gestão Profissional</p>
+            <p>SalonFlow © <span id="currentYear"></span> - Sistema de Gestão Profissional</p>
         </footer>
     </div>
 
@@ -708,27 +715,27 @@
         const SUPABASE_KEY = 'sb_publishable_RYuRxp9GWjfyEMwE3bjMCg_lYIJOg5a';
         const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        let currentBarbeariaId = null;
+        let currentSalonId = null;
         let currentUser = null;
         let refreshInterval = null;
 
         function updateMobileUserInfo() {
             const userName = document.getElementById('userName')?.textContent || 'Usuário';
-            const barbershopName = document.getElementById('barbershopName')?.textContent || '';
+            const salonName = document.getElementById('salonName')?.textContent || '';
             
             const mobileUserName = document.getElementById('mobileUserName');
-            const mobileBarbershopName = document.getElementById('mobileBarbershopName');
+            const mobileSalonName = document.getElementById('mobileSalonName');
             
             if (mobileUserName) {
                 mobileUserName.textContent = userName;
             }
             
-            if (mobileBarbershopName && barbershopName) {
-                mobileBarbershopName.innerHTML = '<i class="fas fa-store"></i> ' + barbershopName;
+            if (mobileSalonName && salonName) {
+                mobileSalonName.innerHTML = '<i class="fas fa-store"></i> ' + salonName;
             }
         }
 
-        async function getCurrentBarbearia() {
+        async function getCurrentSalon() {
             try {
                 const userStr = sessionStorage.getItem('barberflow_user');
                 if (!userStr) {
@@ -739,7 +746,7 @@
                 currentUser = JSON.parse(userStr);
                 
                 if (currentUser.barbearia_id) {
-                    const { data: barbearia, error } = await supabaseClient
+                    const { data: salon, error } = await supabaseClient
                         .from('barbearias')
                         .select('*')
                         .eq('id', currentUser.barbearia_id)
@@ -747,14 +754,14 @@
                     
                     if (error) throw error;
                     
-                    currentBarbeariaId = barbearia.id;
-                    sessionStorage.setItem('currentBarbeariaId', barbearia.id);
-                    sessionStorage.setItem('currentBarbeariaName', barbearia.nome);
+                    currentSalonId = salon.id;
+                    sessionStorage.setItem('currentBarbeariaId', salon.id);
+                    sessionStorage.setItem('currentBarbeariaName', salon.nome);
                     
-                    const badge = document.getElementById('barbershopBadge');
-                    const nameSpan = document.getElementById('barbershopName');
-                    if (barbearia.nome && badge && nameSpan) {
-                        nameSpan.textContent = barbearia.nome;
+                    const badge = document.getElementById('salonBadge');
+                    const nameSpan = document.getElementById('salonName');
+                    if (salon.nome && badge && nameSpan) {
+                        nameSpan.textContent = salon.nome;
                         badge.style.display = 'inline-flex';
                     }
                 }
@@ -767,9 +774,9 @@
                 }
                 
                 updateMobileUserInfo();
-                return currentBarbeariaId;
+                return currentSalonId;
             } catch (error) {
-                console.error('Erro ao buscar barbearia:', error);
+                console.error('Erro ao buscar salão:', error);
                 return null;
             }
         }
@@ -804,7 +811,7 @@
         }
 
         async function loadDashboardData() {
-            if (!currentBarbeariaId) return;
+            if (!currentSalonId) return;
             
             try {
                 document.getElementById('dashboardMessage').textContent = 'Atualizando informações...';
@@ -823,7 +830,7 @@
                         barbeiros (nome),
                         clientes (nome, telefone)
                     `)
-                    .eq('barbearia_id', currentBarbeariaId);
+                    .eq('barbearia_id', currentSalonId);
                 
                 if (aptError) throw aptError;
                 
@@ -848,7 +855,7 @@
                 const { count: totalClients, error: clientError } = await supabaseClient
                     .from('clientes')
                     .select('*', { count: 'exact', head: true })
-                    .eq('barbearia_id', currentBarbeariaId);
+                    .eq('barbearia_id', currentSalonId);
                 
                 if (!clientError) {
                     document.getElementById('totalClients').textContent = totalClients || 0;
@@ -874,7 +881,7 @@
                 }
                 
                 await loadUpcomingAppointments(appointments || [], today);
-                await loadBarberPerformance(appointments || [], firstDayStr);
+                await loadProfessionalPerformance(appointments || [], firstDayStr);
                 
                 document.getElementById('dashboardMessage').innerHTML = '✅ Sistema atualizado • ' + todayCount + ' agendamentos hoje • ' + formatMoney(monthRevenue) + ' em receitas';
                 document.getElementById('dashboardMessage').style.color = '#28a745';
@@ -919,7 +926,7 @@
                 html += '<h4>' + (apt.clientes?.nome || 'Cliente') + '</h4>';
                 html += '<div class="appointment-meta">';
                 html += '<span><i class="fas fa-scissors"></i> ' + (apt.servicos?.nome || 'Serviço') + '</span>';
-                html += '<span><i class="fas fa-user-tie"></i> ' + (apt.barbeiros?.nome || 'Barbeiro') + '</span>';
+                html += '<span><i class="fas fa-user-tie"></i> ' + (apt.barbeiros?.nome || 'Profissional') + '</span>';
                 html += '<span><i class="fas fa-calendar"></i> ' + formattedDate + '</span>';
                 html += '<span><i class="fas fa-clock"></i> ' + formatTime(apt.data_hora) + '</span>';
                 html += '</div></div>';
@@ -930,17 +937,17 @@
             container.innerHTML = html;
         }
 
-        async function loadBarberPerformance(appointments, firstDayStr) {
-            const container = document.getElementById('barberPerformance');
+        async function loadProfessionalPerformance(appointments, firstDayStr) {
+            const container = document.getElementById('professionalPerformance');
             
-            const { data: barbers, error: barberError } = await supabaseClient
+            const { data: professionals, error: professionalError } = await supabaseClient
                 .from('barbeiros')
                 .select('id, nome')
-                .eq('barbearia_id', currentBarbeariaId)
+                .eq('barbearia_id', currentSalonId)
                 .eq('status', 'ativo');
             
-            if (barberError || !barbers || barbers.length === 0) {
-                container.innerHTML = '<div class="empty-state"><i class="fas fa-user-tie"></i><p>Nenhum barbeiro cadastrado</p><small>Cadastre barbeiros no sistema</small></div>';
+            if (professionalError || !professionals || professionals.length === 0) {
+                container.innerHTML = '<div class="empty-state"><i class="fas fa-user-tie"></i><p>Nenhum profissional cadastrado</p><small>Cadastre profissionais no sistema</small></div>';
                 return;
             }
             
@@ -948,10 +955,10 @@
                 a.data_hora?.split('T')[0] >= firstDayStr
             ) || [];
             
-            const barberStats = {};
-            barbers.forEach(barber => {
-                barberStats[barber.id] = {
-                    nome: barber.nome,
+            const professionalStats = {};
+            professionals.forEach(professional => {
+                professionalStats[professional.id] = {
+                    nome: professional.nome,
                     total: 0,
                     concluidos: 0,
                     receita: 0,
@@ -960,21 +967,21 @@
             });
             
             monthAppointments.forEach(apt => {
-                if (apt.barbeiro_id && barberStats[apt.barbeiro_id]) {
-                    barberStats[apt.barbeiro_id].total++;
+                if (apt.barbeiro_id && professionalStats[apt.barbeiro_id]) {
+                    professionalStats[apt.barbeiro_id].total++;
                     if (apt.status === 'concluido') {
-                        barberStats[apt.barbeiro_id].concluidos++;
-                        barberStats[apt.barbeiro_id].receita += apt.servicos?.preco || 0;
+                        professionalStats[apt.barbeiro_id].concluidos++;
+                        professionalStats[apt.barbeiro_id].receita += apt.servicos?.preco || 0;
                     } else if (apt.status === 'cancelado') {
-                        barberStats[apt.barbeiro_id].cancelados++;
+                        professionalStats[apt.barbeiro_id].cancelados++;
                     }
                 }
             });
             
             container.innerHTML = '';
             
-            for (const barber of Object.values(barberStats)) {
-                const completionRate = barber.total > 0 ? Math.round((barber.concluidos / barber.total) * 100) : 0;
+            for (const professional of Object.values(professionalStats)) {
+                const completionRate = professional.total > 0 ? Math.round((professional.concluidos / professional.total) * 100) : 0;
                 
                 let performanceColor = '#28a745';
                 let performanceIcon = 'fa-star';
@@ -991,19 +998,19 @@
                     performanceText = 'Precisa melhorar';
                 }
                 
-                const barberCard = document.createElement('div');
-                barberCard.className = 'barber-card';
-                barberCard.style.borderLeft = '5px solid ' + performanceColor;
-                barberCard.innerHTML = `
+                const professionalCard = document.createElement('div');
+                professionalCard.className = 'professional-card';
+                professionalCard.style.borderLeft = '5px solid ' + performanceColor;
+                professionalCard.innerHTML = `
                     <div style="text-align: center;">
-                        <i class="fas fa-user-tie" style="font-size: 2.5rem; color: #000;"></i>
-                        <div style="font-weight: bold; margin-top: 5px;">${barber.nome}</div>
+                        <i class="fas fa-user-tie" style="font-size: 2.5rem; color: #005a8c;"></i>
+                        <div style="font-weight: bold; margin-top: 5px;">${professional.nome}</div>
                     </div>
                     <div>
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
                             <div>
                                 <div style="font-size: 0.9rem; color: #666;">Total Atendimentos</div>
-                                <div style="font-size: 1.4rem; font-weight: bold;">${barber.total}</div>
+                                <div style="font-size: 1.4rem; font-weight: bold;">${professional.total}</div>
                             </div>
                             <div>
                                 <div style="font-size: 0.9rem; color: #666;">Taxa de Conclusão</div>
@@ -1014,13 +1021,13 @@
                             <div>
                                 <div style="font-size: 0.9rem; color: #666;">Receita</div>
                                 <div style="font-size: 1.4rem; font-weight: bold; color: #28a745;">
-                                    ${formatMoney(barber.receita)}
+                                    ${formatMoney(professional.receita)}
                                 </div>
                             </div>
                             <div>
                                 <div style="font-size: 0.9rem; color: #666;">Cancelamentos</div>
                                 <div style="font-size: 1.4rem; font-weight: bold; color: #dc3545;">
-                                    ${barber.cancelados}
+                                    ${professional.cancelados}
                                 </div>
                             </div>
                         </div>
@@ -1033,7 +1040,7 @@
                         <div style="font-weight: bold; color: ${performanceColor};">${performanceText}</div>
                     </div>
                 `;
-                container.appendChild(barberCard);
+                container.appendChild(professionalCard);
             }
         }
 
@@ -1070,14 +1077,14 @@
             window.location.href = 'login.html';
         } else {
             (async () => {
-                await getCurrentBarbearia();
+                await getCurrentSalon();
                 await loadDashboardData();
                 
                 updateDateTime();
                 setInterval(updateDateTime, 1000);
                 
                 refreshInterval = setInterval(() => {
-                    if (currentBarbeariaId) loadDashboardData();
+                    if (currentSalonId) loadDashboardData();
                 }, 30000);
             })();
         }
